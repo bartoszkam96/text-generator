@@ -1,4 +1,3 @@
-# Write your code here
 import random
 
 
@@ -14,32 +13,6 @@ def fileopen():
 
         print("Failed to read the file.")
 
-
-def tokens(tokenlist):
-    print("Corpus statistics")
-    print("All tokens: %d" % len(tokenlist))
-    print("Unique tokens: %d" % len(set(tokenlist)))
-
-    while True:
-        userinput = input()
-        if userinput == "exit":
-            break
-        try:
-            userinput = int(userinput)
-        except:
-            print("Type Error")
-            continue
-        try:
-            print(tokenlist[userinput])
-        except IndexError:
-            print("Index Error")
-
-
-def bigramlist(tokenlist):
-    bigramlist = []
-    for x in range(len(tokenlist) - 1):
-        bigramlist.append("%s %s" % (tokenlist[x], tokenlist[x + 1]))
-    return bigramlist
 
 
 def trigramlist(tokenlist):
@@ -65,37 +38,6 @@ def tritails(trigramlist):
             tailsdict[head][tail] = 1
     return tailsdict
 
-
-def tails(bigramlist):
-    tailsdict = {}
-    for x in bigramlist:
-        head = x.split(" ")[0]
-        tailsdict[head] = {}
-
-    for x in bigramlist:
-        head = x.split(" ")[0]
-        tail = x.split(" ")[1]
-        if tail in tailsdict[head]:
-            x = tailsdict[head][tail]
-            tailsdict[head][tail] = x + 1
-        else:
-            tailsdict[head][tail] = 1
-    return tailsdict
-
-
-def output(tails):
-    while True:
-        userinput = input()
-        if userinput == "exit":
-            break
-        try:
-            print("Head: %s" % userinput)
-            for x in tails[userinput]:
-                print("Tail: %s Count: %d" % (x, tails[userinput].get(x)))
-
-        except:
-            print("The requested word is not in the model. Please input another word.")
-            continue
 
 
 def firstword(tails):
